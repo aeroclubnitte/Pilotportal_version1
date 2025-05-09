@@ -1,0 +1,355 @@
+<%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+ 
+
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        
+        .leftspace {
+            margin-left: 19%;
+            /*to adjust the page setup*/ 
+            height: 450px;
+            width: 76%;
+        }
+        
+        table{
+            border:none;
+            width:800px;
+        }
+        
+        .crashtable2 {
+            border: none;
+            width: 800px;
+        }
+        
+        th, td {
+            border: none;
+        }
+        
+        .crashtable {
+            border: none;
+        }
+        
+        .DetaileddurationTable {
+            border: none;
+            width: 300px;
+        }
+        
+        th {
+            border: none;
+            background-color: rgba(131, 127, 204, 0.5);
+            text-align: center;
+        }
+        
+        td {
+            border: none;
+            background-color: rgba(203, 202, 225, 0.5);
+            
+            text-align: center;
+        }
+        .overflow-hidden {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+        
+
+        
+        h3, h5 {
+            font-family: 'Montserrat';
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width: 150px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        button[type='button'] {
+            border:none;}
+        
+        .dropdown-options.hidden {
+            display: none;
+        }
+        
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-selected {
+            display: inline-block;
+            padding: 8px;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        
+        .dropdown-arrow {
+            position: absolute;
+            top: 70%;
+            right: 10px;
+            transform: translateY(-50%, rotate(0deg));
+            width: 5px;
+            height: 5px;
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 2px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-arrow.open {
+            transform: translateY(-50%), rotate(45deg);
+        }
+        
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-top: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        
+        .dropdown-options-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        /* Modal styles */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: #f2f2f2;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #f2f2f2;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-content p {
+            color: #5C5992;
+            font-weight: bold;
+        }
+
+        .modal-content ul li {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <form id="crashForm" action="/insert_damaged_parts" method="post">
+        <div class="leftspace">
+            <br><br><br>
+            <h3>Crash Flight Details:</h3>
+            <% if (crashdetails && crashdetails.length > 0) { %>
+            <table class="crashtable2">
+                <thead>
+                    <tr>
+                        <!-- <th>Drone ID</th> -->
+                        <th>Drone Name</th>
+                        <th>Flight ID</th>
+                        <th>Mode</th>
+                        <th>Date</th>
+                        <th>Damaged Parts</th>
+                        <th>Duration</th>
+                        <th>Copilot</th>
+                        <th>Email ID</th>
+                        <th>Total Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% crashdetails.forEach((crash, index) => { %>
+                    <tr>
+                        <!-- <td class="overflow-hidden"><%= crash.drone_id %></td> -->
+                        <td class="overflow-hidden"><%= crash.drone_name %></td>
+                        <td class="overflow-hidden"><%= crash.flight_id %></td>
+                        <td class="overflow-hidden"><%= crash.mode %></td>
+                        <td class="overflow-hidden">
+                            <% var dateObj = new Date(crash.date); %>
+                            <% var formattedDate = ("0" + dateObj.getDate()).slice(-2) + "-" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "-" + dateObj.getFullYear(); %>
+                            <%= formattedDate %>
+                        </td>
+                        <td >
+                            <div class="custom-dropdown">
+                                <div class="dropdown-selected" onclick="toggleDropdown(event, '<%= index %>')">
+                                    <span class="dropdown-text">Damaged Items</span>
+                                    <span class="dropdown-arrow"></span>
+                                </div>
+                                <div class="dropdown-options hidden" id="dropdownOptions<%= index %>">
+                                    <% for (var i = 0; i < items_name.length; i++) { %>
+                                    <div class="dropdown-option">
+                                        <input type="checkbox" id="part<%= index %>-<%= i %>" name="selectedItems" value="<%= items_name[i].items_name %>">
+                                        <label for="part<%= index %>-<%= i %>"><%= items_name[i].items_name %></label>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="overflow-hidden"><%= crash.duration %></td>
+                        <td class="overflow-hidden"><%= crash.copilot %></td>
+                        <td class="overflow-hidden"><%= crash.emailid %></td>
+                        <td>
+                            <button type="button" onclick="showCostDetails('<%= crash.flight_id %>')"><%= crash.total_cost %></button>
+                        </td>
+                        <td>
+                            <button type="submit" name="flightId" value="<%= crash.flight_id %>">Submit</button>
+                          
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <% } else { %>
+            <p>No crash details available.</p>
+            <% } %>
+        </div>
+    </form>
+
+    <!-- Pop-up modal -->
+   <!-- Pop-up modal -->
+<div class="modal" id="costModal">
+    <div class="modal-content">
+        <span class="close" onclick="hideCostDetails()">&times;</span>
+        <h3>Total Cost Details</h3>
+        <div id="costDetails"></div>
+    </div>
+</div>
+
+
+    <script>
+        function toggleDropdown(event, index) {
+            const dropdownOptions = document.getElementById(`dropdownOptions${index}`);
+            dropdownOptions.classList.toggle('hidden');
+            event.stopPropagation();
+        }
+
+        
+        function showCostDetails(flightId) {
+    fetch(`/cost_details?flightId=${flightId}`)
+        .then(response => response.json())
+        .then(data => {
+            const total_cost = data.total_cost;
+            const items_name = data.items_name;
+
+            const costDetailsElement = document.getElementById('costDetails');
+            costDetailsElement.innerHTML = `
+           
+                <ul>
+                    ${items_name.map((item, i) => `<li>${item}: ${total_cost[i]}</li>`).join('')}
+                </ul>
+            `;
+
+            const modal = document.getElementById('costModal');
+            modal.style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching cost details:', error);
+        });
+}
+
+        function hideCostDetails() {
+            const modal = document.getElementById('costModal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

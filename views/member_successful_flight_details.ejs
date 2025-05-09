@@ -1,0 +1,243 @@
+<%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+ 
+    <style>
+       body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+      .leftspace{
+    margin-left: 20%;
+  }
+  .crashtable1{
+    border:none;
+    width:1435px;
+  }
+  .crashtable2{
+    border:none;
+    width:1435px;
+  }
+  th,td{
+    border: none;
+    text-align: center;
+  }
+ 
+      .leftspace{
+    margin-left: 20%;
+    /*to adjust the page setup*/ 
+       
+        height: 450px;
+        width: 76%;
+        
+  }
+  .crashtable{
+    border: none;
+    
+  }
+  .DetaileddurationTable{
+    border:none;
+    width: 300px;
+
+  }
+  th{
+    border:none;
+    background-color:rgba(131, 127, 204, 0.5);
+    text-align: center;
+  }
+  td{
+    border:none;
+    background-color:rgba(203, 202, 225, 0.5);
+    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  }
+   h3{
+    font-family: 'Montserrat';
+          
+           
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+         
+  }
+  h5{
+    font-family: 'Montserrat';
+          
+           
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+         
+  }
+    
+  button[type='button'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width:150px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        button[type="button"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        .dropdown-options.hidden {
+    display: none;}
+
+    .dropdown-options.hidden {
+    display: none;
+  }
+
+  .custom-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-selected {
+    display: inline-block;
+    padding: 8px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+
+  .dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%, rotate(0deg));
+    width: 8px;
+    height: 8px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-arrow.open {
+    transform: translateY(-50%), rotate(45deg);
+  }
+
+  .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+
+  .dropdown-options-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .btn{
+       
+       background: #5C5992;
+       color: white;
+         border: 3px solid #F5F5F5;
+         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+         border-radius: 50px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+     padding: 10px;
+     font-size: 13px;
+     border: none;
+     border-radius: 25px;
+     width: 170px;
+     margin-left: 20%;
+     float: right;
+     width: 150px;
+     font-family: 'Montserrat', Arial, sans-serif;}
+ 
+                         
+     
+    
+
+    </style>
+        <form action="/pilotcrashdetails" method="get">
+          <br><br><br><button type="submit" class='btn'><b>Crash Details</b></button><br><br><br>
+        <br>
+       </form>
+
+       <form action="/flying">
+        <button type="submit" class='btn'><b>Add Details</b></button>
+        
+    </form>
+     <div class="leftspace" ><br><br><br>
+<h3> Successful Flight Details:</h3>
+<% if (query4.length >0) { %>
+  <table class="crashtable1">
+    <thead>
+      <tr>
+        <th>Drone ID</th>
+        <th>Drone Name</th>
+        <th>Flight ID</th>
+        <th>Mode</th>
+        <th>Date</th>
+        <th>Duration</th>
+        <th>Copilot</th>
+        <th>Email ID</th>
+
+        <!-- <th>Result</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% query4.forEach((crash, index) => { %>
+        <tr>
+          <td><%= crash.drone_id %></td>
+          <td><%= crash.drone_name %></td>
+          <td><%= crash.flight_id %></td>
+          <td><%= crash.mode %></td>
+          <td><% var dateObj = new Date(crash.date); %>
+            <% var formattedDate = ("0" + dateObj.getDate()).slice(-2) + "-" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "-" + dateObj.getFullYear(); %>
+            <%= formattedDate %></td>
+          <td><%= crash.duration %></td>
+          <td><%= crash.copilot %></td>
+          <td><%= crash.emailid %></td>
+          
+          <!-- <td><%= crash.result %></td> -->
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No crash details available.</p>
+<% } %>
+
+</div>

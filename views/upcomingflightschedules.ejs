@@ -1,0 +1,291 @@
+<%- include('./reusable/admin_reusable') %>
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <title>Infinity Drones Pilot Portal</title>
+      <script>
+        var link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = 'icon';
+          document.head.appendChild(link);
+        }
+        link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+      </script>
+     
+    
+      <head>
+
+        <style>
+        
+          
+        body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+         /*to adjust the page setup*/ 
+         .container {
+        padding: 55px;
+        height: 450px;
+        width: 80%;
+        }
+          
+        input[type=text]
+        {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: none;
+        font-family: 'Montserrat', Arial, sans-serif;
+      
+          }
+          
+          
+        input[type=text]:focus
+        {
+        
+          outline: none;
+        }
+        
+        
+          
+                       
+        table {
+          font-family: 'Montserrat', Arial, sans-serif;
+
+        width: 100%;
+      
+        }
+                      
+        
+        th {
+          width: 500px;
+          text-align: center;
+          padding: 5px;
+          border:none;
+          background-color:rgba(131, 127, 204, 0.5);
+          font-family: 'Montserrat', Arial, sans-serif;
+          text-align: center;
+          }
+          
+          td {
+          width: 190px;
+          text-align: center;
+          padding: 5px;
+          border:none;
+    background-color:rgba(203, 202, 225, 0.5);
+    font-family: 'Montserrat', Arial, sans-serif;
+    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+          }
+                          
+        .btn1 {
+       
+       
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        width: 150px;
+        display: inline-block;
+          padding: 9px 16px;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out;
+          width:120px;
+          background: #5C5992;
+          border: 3px solid #F5F5F5;
+          box-shadow: 0px 4px 4px rgba(74, 7, 7, 0.25);
+          border-radius: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10px;
+          font-family: 'Montserrat', Arial, sans-serif;}
+
+        
+        .btn{
+       
+          font-family: 'Montserrat', Arial, sans-serif;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        width: 160px;
+        margin-left: 20%;
+        float: right;
+      
+        display: inline-block;
+          padding: 9px 16px;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out;
+          
+          background: #5C5992;
+          border: 3px solid #F5F5F5;
+          box-shadow: 0px 4px 4px rgba(74, 7, 7, 0.25);
+          border-radius: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        h1{
+         
+         font-family: 'Montserrat', Arial, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 43px;
+     
+      color: #5C5992;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }
+                            
+        .btn_d {
+        background-color:black;
+      
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        width: 80px;
+        margin-left: 18%;
+        }
+        .btn_res {
+              background-color:black;
+           
+              padding: 12px;
+              font-size: 12px;
+              border: none;
+              border-radius: 15px;
+              width: 80px;
+            }
+        
+        .container {
+        margin-left: 15%;
+        }
+       
+        .d{
+          width: 300%;
+          }
+          #event{
+            display: none;
+          }
+          #email,#flightid,#date,#time,#description,#copilot,#called{
+            padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background:none;
+        font-size: 15px;
+        width:100%;
+        text-align: center;
+
+          }
+          th{
+            font-size: 20px;
+            border:none;
+            text-align: center;
+            
+          }
+          table{
+            width: 100%;
+            border:none;
+          }
+        </style>
+        </head>
+        <body>
+          <div class=container>
+            <form action="/view_flight_forms" method="get">
+            
+
+
+              <br><br><br> <button type="submit" class='btn' name=scheduleflights><b>Schedule flight</b></button><br><br><br><br><br>
+
+          
+           </form>
+             
+              <h1><b>UPCOMING FLIGHTS</b></h1><br><br>
+              <center>
+                <table>
+                    <td><tr>
+                        <th>Flight ID</th>
+                        <th>Email ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Description</th>
+                        <th>Copilot</th>
+                        <th>Called/Not</th>
+                      
+            
+        
+                      </tr></td>
+                    
+                  <% for(var i=0;i<flight.length;i++){ %>
+                  <tr></tr>
+                    <form action="/all_schedules" method="POST">
+                    
+                        
+                      <td>
+                        <input type="text" id="flight_id" name="flight_id" value="<%- flight[i].flight_id %>"" readonly>
+                      </td> 
+                      
+                      <td>
+                        <input type="text" id="email" name="email" value="<%- flight[i].email %>" readonly>
+                      </td> 
+                     
+
+                      <td>
+                        <% var dateObj = new Date(flight[i].date); %>
+                        <% var formattedDate = ("0" + dateObj.getDate()).slice(-2) + "-" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "-" + dateObj.getFullYear(); %>
+                        <%= formattedDate %>
+                      </td>
+                      <td>
+                        <input type="text" id="time" name="time" value="<%- flight[i].time %>" readonly>
+                      </td> 
+
+                      <td>
+                        <input type="text" id="description" name="description" value="<%- flight[i].description%>" readonly>
+                      </td> 
+                      
+                      <td>
+                        <input type="text" id="copilot" name="copilot" value="<%- flight[i].copilot%>" readonly>
+                      </td> 
+                      <td>
+                        <input type="text" id="called" name="called" value="<%- flight[i].called%>" readonly>
+                      </td> 
+                    
+                      <td>
+                        <button type="submit" class='btn1' name=editschedule value=<%- flight[i].flight_id %>><b>Reschedule</b></button>
+                       
+                      </td>
+                      <td>
+                        <button type="submit" class='btn1' name=deleteschedule ONCLICK="alert('Succesfully Deleted the schedule..')" value=<%- flight[i].flight_id %>><b>Delete</b></button>
+                       
+                      </td>
+
+                      
+                    
+                    
+                    </form></tr><%}%>
+                    </table></center>
+             
+
+            
+              
+ </body>
+    </html>

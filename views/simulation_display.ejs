@@ -1,0 +1,103 @@
+<%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .container {
+            margin: 5% auto;
+            width: 70%;
+            padding-left: 25%;
+            padding-top: 7%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+            text-align: left;
+            padding-left: 50%;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #5C5992;
+            color: white;
+        }
+        tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        .btn {
+            margin-top: 2%;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 150px;
+            float: right;
+            background: #5C5992;
+            color: white;
+            border: none;
+            padding: 10px;
+        }
+        .btn:hover {
+            background-color: #a4a2d7;
+        }
+        h1 {
+            font-size: 25px;
+            color: #5C5992;
+            margin-top: 0;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1><b>SIMULATION DETAILS</b></h1>
+            <a href="/add_simulation"><button class="btn">Add Simulation Details</button></a>
+        </div>
+        <center>
+            <table id="simulationtable">
+                <thead>
+                    <tr>
+                        <th>Flight-Id</th>
+                        <th>Date</th>
+                        <!-- <th>Name</th> -->
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Description</th>
+                         <th>Duration(minutes)</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <% simulations.forEach(simulation => { %>
+                        <tr>
+                            <td><%=simulation.flight_id%></td>
+                            <td><%= new Date(simulation.date).toLocaleDateString() %></td>
+                            <!-- <td><%= simulation.name %></td> -->
+                            <td><%= simulation.start_time %></td>
+                            <td><%= simulation.end_time %></td>
+                            <td><%= simulation.description %></td>
+                            <td><%= simulation.total_minutes %></td> 
+
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </center>
+    </div>
+</body>
+</html>

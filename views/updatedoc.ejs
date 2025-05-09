@@ -1,0 +1,303 @@
+<%- include('./reusable/admin_reusable') %>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    
+  <title>Infinity Drones Pilot Portal</title>
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Montserrat'>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+
+  <style>
+ 
+    .content {
+   margin-left: 250px; /* Adjust the margin to match the sidebar width */
+   padding: 20px;
+   transition: 0.5s;
+  
+ }
+     
+     body {
+         background-color:white;
+       font-family: Arial, Helvetica, sans-serif;
+     }
+      
+     input[type=text]
+     {
+     width: 100%;
+     padding: 15px;
+     margin: 5px 0 22px 0;
+     display: inline-block;
+     border: none;
+     background: #f9f3f3;
+       }
+
+ 
+       input[type=date]
+       {
+     width: 100%;
+     padding: 15px;
+     margin: 5px 0 22px 0;
+     display: inline-block;
+     border: none;
+     background: #f9f3f3;
+       }
+       input[type=mobile]
+       {
+     width: 100%;
+     padding: 15px;
+     margin: 5px 0 22px 0;
+     display: inline-block;
+     border: none;
+     background: #f9f3f3;
+       }
+       input[type=email]
+       {
+     width: 100%;
+     padding: 15px;
+     margin: 5px 0 22px 0;
+     display: inline-block;
+     border: none;
+     background: #f9f3f3;
+       }
+       
+     input[type=text]:focus
+     {
+       background-color: #ddd;
+       outline: none;
+     }
+     input[type=mobile]:focus
+     {
+       background-color: #ddd;
+       outline: none;
+     }
+     input[type=date]:focus
+     {
+       background-color: #ddd;
+       outline: none;
+     }
+     input[type=email]:focus
+     {
+       background-color: #ddd;
+       outline: none;
+     }
+ 
+     
+     .btn{
+     background-color:#f6f0e6;
+     color: rgb(16, 16, 16);
+     padding: 10px;
+     font-size: 16px;
+     border: none;
+     border-radius: 25px;
+     width: 100px;
+     margin-left: 20%;
+     float: right;
+     width: 150px;}
+     
+     form {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 638px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 35px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 37px;
+            color:black;
+        }
+     label {
+         display: block;
+         margin-bottom: 5px;
+         font-weight: bold; /* Add this line to make all labels bold */
+     }
+
+     input[type='text'],input[type='email'],input[type='date'],input[type='mobile'],input[type='file'],select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 37px;
+            color: #7F8685;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+
+     button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width:100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 150px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+     .form-container button[type="submit"] {
+      align-self: flex-end;
+      margin-top: 10px;
+      margin-left:250px;
+    }
+    .adddetails {
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 43px;
+            text-align: center;
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        fieldset {
+    margin-bottom: 20px; /* Adjust the spacing between fieldsets */
+    padding: 12px; /* Add padding around fieldsets */
+    border: 0px solid #f7f4f4; /* Add border to fieldsets */
+    background-color: #f2f2f3; /* Set the background color of fieldsets */
+    border-radius: 0px;}
+
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr); /* Create three equal columns */
+  gap: 20px; /* Add
+   a gap between the items */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+    .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 40px; /* Adjust the gap between input fields */
+}
+
+
+.input-container input {
+  width: 100%; /* Adjust the width of the input fields */
+}
+  .input-container input {
+    margin: -4px; /* Adjust the spacing between the input fields */
+  }
+ </style>
+  
+  
+</head>
+<body>
+  <div class='adddetails'>
+    <br> Edit Pilot Details
+  </div>
+  <div class="form-container">
+    <form action="/edit/<%= profileData.emailid %>" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <div class="input-container">
+        <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="<%= profileData.name %>" />
+      </div></div></fieldset>
+      <fieldset>
+        <div class="input-container">
+
+      <div>
+        <label for="emailid">Email ID</label>
+        <input readonly type="email" id="emailid" name="emailid" value="<%= profileData.emailid %>" />
+      </div></div></fieldset>
+      <fieldset>
+        <div class="input-container">
+      <div>
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" value="<%= new Date(profileData.dob).toISOString().substring(0, 10) %>" />
+      </div>
+
+      <div>
+        <label for="mobile_no">Mobile Number</label>
+        <input type="mobile" id="mobile_no" name="mobile_no" value="<%= profileData.mobileno %>" />
+      </div></div></fieldset>
+      <fieldset>
+        <div class="input-container">
+
+      <div>
+        <label for="type_of_drone_experience">Type of Drone Experience</label>
+        <input type="text" id="type_of_drone_experience" name="type_of_drone_experience" value="<%= profileData.drone_experience %>">
+      </div>
+
+      <div>
+        <label for="honors_and_achievements">Honors and Achievements</label>
+        <input type="text" id="honors_and_achievements" name="honors_and_achievements" value="<%= profileData.honours_achievements %>">
+      </div></div></fieldset>
+      <fieldset>
+        <div class="input-container">
+      <div>
+        <label for="image">Profile Image</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+        
+          <img src="<%= imageUrl %>" id="imagePreview" />
+
+      </div></div></fieldset>
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  <script>
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        imagePreview.src = reader.result;
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>

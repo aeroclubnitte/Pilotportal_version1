@@ -1,0 +1,210 @@
+<%- include('./reusable/admin_reusable') %>
+<head>
+  <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<style>
+  .content {
+    margin-left: 250px; /* Adjust the margin to match the sidebar width */
+  }
+  
+  .card-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px; /* Adjust the gap value to increase/decrease spacing between cards */
+    padding: 1rem;
+    width: fit-content; /* Adjust the width to fit the content */
+  }
+
+  .card {
+    width: 400px; /* Increase the width to increase the space for each member's details */
+    background-color: rgba(195, 193, 225, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    height: 600px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    width: 200px; /* Decrease the width to adjust the size of the image */
+    height: 200px;
+    object-fit: cover;
+    margin-top: 20px; /* Add margin-top to align the image to the top center */
+  }
+
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem;
+  }
+
+  .card-details h2 {
+    text-align: center; /* Center align the h2 content */
+    margin-bottom: 1rem; /* Add margin-bottom to create a gap between h2 contents */
+    font-family: 'Montserrat', Arial, sans-serif; /* Apply Montserrat font */
+  }
+
+  .card-details h4 {
+    margin: 0; /* Reset margin to remove any inherited margin */
+    font-size: 15px; /* Adjust the font size as desired */
+    font-family: 'Montserrat', Arial, sans-serif; /* Apply Montserrat font */
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center; /* Align buttons at the center horizontally */
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .button-container button {
+    margin: 0 5px; /* Add a little gap between the buttons */
+    background: #5C5992;
+    border: 3px solid #F5F5F5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', Arial, sans-serif; /* Apply Montserrat font */
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .button-container button:hover {
+    background-color: rgba(217, 217, 217, 0.17);
+  }
+
+  .container {
+    padding: 60px;
+    height: 450px;
+    width: 100%;
+  }
+  
+  h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 43px;
+    color: #5C5992;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: black;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  h4 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: black;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+                            
+  /* Rest of your CSS styles */
+</style>
+</head>
+<div class="container"> 
+  <center>
+    <div class='pilotlist'>
+      <h1><b>PILOTS</b></h1>
+    </div>
+  </center>
+
+  <div class="content">
+    <div class="card-slider">
+      <% pilots.forEach(function(pilot) { %>
+        <div class="card" onclick="window.location.href='/edit/<%= pilot.emailid %>'">
+          <img src="<%= pilot.imageUrl %>" alt="Profile Image">
+          <div class="card-details">
+            <h2><b><%= pilot.name %></b></h2>
+            <h4>Email_ID: <%= pilot.emailid %></h4>
+            <h4>Mobile_Number: <%= pilot.mobileno %></h4>
+            <h4>DOB: <%= new Date(pilot.dob).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            }) %></h4>
+            <h4>Type of drone experience: <%= pilot.drone_experience %></h4>
+            <h4>Honors and Achievement:<%= pilot.honours_achievements %></h4>
+
+            <h4>Total Flying Hours:<% if (pilot.total_flight_hours >= 3600) { %>
+              <% const hours = Math.floor(pilot.total_flight_hours / 3600); %>
+              <% const minutes = Math.floor((pilot.total_flight_hours % 3600) / 60); %>
+              <% const seconds = pilot.total_flight_hours % 60; %>
+              <span><%= hours %> hrs <%= minutes %> mins <%= seconds %> secs</span>
+          <% } else if (pilot.total_flight_hours >= 60) { %>
+              <% const minutes = Math.floor(pilot.total_flight_hours / 60); %>
+              <% const seconds = pilot.total_flight_hours % 60; %>
+              <span><%= minutes %> mins <%= seconds %> secs</span>
+          <% } else { %>
+              <span><%= pilot.total_flight_hours %> seconds</span>
+          <% } %></h4>
+
+
+            <h4>Total Simulation Time:<% if (pilot.total_simulation_time >= 60) { %>
+            <% const hours = Math.floor(pilot.total_simulation_time / 60); %>
+            <% const minutes = pilot.total_simulation_time % 60; %>
+            <span><%= hours %> hrs <%= minutes %> mins</span>
+        <% } else { %>
+            <span><%= pilot.total_simulation_time %> minutes</span>
+        <% } %></h4>
+
+
+            <div class="button-container">
+              <form action="/delete" method="post">
+                <button type="submit" class="btn1" name="id" value="<%= pilot.emailid %>"><b>Delete</b></button>
+              </form>
+              <button class="btn1" onclick="window.location.href='/edit/<%= pilot.emailid %>'"><b>Update</b></button>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+<script>
+  const cardSlider = document.querySelector('.card-slider');
+  const prevButton = document.getElementById('prev-button');
+  const nextButton = document.getElementById('next-button');
+  const cardWidth = 400; // Width of each card including margin
+  
+  prevButton.addEventListener('click', () => {
+    cardSlider.scrollBy(-cardWidth, 0);
+  });
+
+  nextButton.addEventListener('click', () => {
+    cardSlider.scrollBy(cardWidth, 0);
+  });
+</script>

@@ -1,0 +1,215 @@
+<%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+    <script>
+      var link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+        }
+        .topspace{
+          margin-top: 5%;
+        }
+        
+        .adddetails {
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 43px;
+            text-align: center;
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 638px;
+            height: 550px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 35px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 37px;
+            color:black;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type='text'],input[type='email'],input[type='number'],select {
+          width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 37px;
+            color: #7F8685;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        input[type='date']{
+          width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 23px;
+            color: #7F8685;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+   
+}
+        
+
+        button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width:100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 250px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        fieldset {
+    margin-bottom: 20px; /* Adjust the spacing between fieldsets */
+    padding: 12px; /* Add padding around fieldsets */
+    border: 0px solid #f7f4f4; /* Add border to fieldsets */
+    background-color: #f2f2f3; /* Set the background color of fieldsets */
+    border-radius: 0px;}
+
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr); /* Create three equal columns */
+  gap: 20px; /* Add
+   a gap between the items */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+    .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 40px; /* Adjust the gap between input fields */
+}
+
+
+.input-container input {
+  width: 100%; /* Adjust the width of the input fields */
+}
+  .input-container input {
+    margin: -4px; /* Adjust the spacing between the input fields */
+  }
+    </style>
+    
+</head>
+<body>
+  <div class="topspace">
+    <div class='adddetails'>
+      Flight Schedule
+    </div>
+      
+    <form method="post" action="/newflightmem">
+      <fieldset>
+        <div class="input-container">
+    
+        <div class="email">
+          <label for="email">PILOT</label>
+          <input type="email" name='email' id="email" value="<%= email%>" readonly>
+        </div></div></fieldset>
+        <fieldset>
+          <div class="input-container">
+        <div class="date">
+          <label for="date">Date</label>
+          <input type="date" name='date' id="date" placeholder="Select date" required>
+        </div>
+        <div class="time">
+          <label for="time">Time</label>
+          <input type="text" name='time' id="time" placeholder="Enter the time" required>
+        </div></div></fieldset>
+        <fieldset>
+          <div class="input-container">
+        <div class="description">
+          <label for="description">Description</label>
+          <input type="text" name='description' id="description" placeholder="Enter flight description" required>
+        </div></div></fieldset>
+        <fieldset>
+          <div class="input-container">
+        
+        <div class="copilot">
+          <label for="copilot">Copilot</label>
+          <input type="text" name='copilot' id="copilot" placeholder="Enter copilot's name" required>
+        </div></div></fieldset>
+        <div>
+         <button  type="submit" ONCLICK="alert('Flight is scheduled succesfully..')"value="Schedule Flight">Submit</button>
+        </div>
+        
+      </form>
+  
+  </div>
+</body>
+</html>

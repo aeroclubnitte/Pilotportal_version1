@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <> -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+
+
+<title>Infinity Drones Pilot Portal</title>
+<script>
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = 'https://imgur.com/iMPMpYI.png';
+
+
+</script>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: white;
+    
+    border: 2px solid black;
+   
+  }
+
+
+  #mainContainer {
+
+    /* margin: 4%; */
+    height: 100%;
+    width: 100%;
+
+    /* border: 2px solid black; */
+  }
+
+  .mainHeading {
+    font-family: 'montserrat';
+    font-size: 6rem;
+    background-color: #f7f7f7e7;
+    ;
+    ;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    margin: 3rem;
+    align-items: center;
+    color: #5C5992;
+
+
+
+
+  }
+
+  #profile {
+    width: 200px;
+    height: 200px;
+    border-radius: 30%;
+    object-fit: cover;
+    padding: 2rem;
+  }
+
+  .profileSection {
+    background-color: #5C5992;
+    ;
+    display: flex;
+    color: white;
+    flex-flow: space-between;
+    align-content: center;
+    margin: 3rem;
+    box-shadow: 10px 10px 5px #b3b3b3ec;
+
+  }
+
+  /* * {
+    box-sizing: border-box;
+} */
+
+
+
+
+  .profileImage {
+    /* background-color: rgb(43, 57, 69); */
+    flex-basis: 30%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .textInfo {
+
+    /* background-color: rgb(222, 133, 133); */
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+    /* gap: 2rem; */
+    flex-basis: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 3vh;
+
+  }
+
+  .extraInfo {
+    /* background-color: rgb(88, 25, 25); */
+    flex-basis: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 2vh;
+  }
+
+  .cumulativeData {
+    /* background-color: rgb(237, 13, 13); */
+    display: flex;
+    gap: 3rem;
+    justify-content: space-around;
+    margin: 3rem;
+    box-shadow: 10px 10px 5px #b3b3b3ec;
+
+  }
+
+  .graphContainer1 {
+    flex-grow: 1;
+    margin: 3rem;
+    /* display: grid;
+        grid-template-columns:540px 10px 540px;
+        grid-template-rows:325px 325px 325px; */
+    height: 100%;
+    width: 97%;
+    /* column-gap: 5%;
+        row-gap: 3%; */
+    display: grid;
+    grid-template-columns: 30% 3% 29% 29%;
+    grid-template-rows: 42% 42%;
+    column-gap: 30px;
+    row-gap: 30px;
+    background-color: #5C5992;
+    ;
+    padding: 20px 0px 0 20px;
+
+
+
+  }
+
+  .recentTable {
+    background-color: #5C5992;
+    ;
+    margin: 2rem 3rem 3rem 3rem;
+    width: 97%;
+    /* box-shadow: 10px 10px 5px #b3b3b3ec; */
+
+  }
+
+  /* .start{
+    align-self: flex-end;
+ } */
+  /* #dateone{
+    align-self: flex-end;
+} */
+  .chart-container1 {
+    /* width: 30%; */
+    /* margin-bottom: 2px; */
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-left: 70px; */
+    border-radius: 20px;
+    /* height: 400px; */
+
+
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+
+
+
+
+
+  }
+
+  .chart-container2 {
+    /* width: 30%; */
+    /* margin-top: 10vh; */
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-left: 70px; */
+    border-radius: 20px;
+    /* height: 400px; */
+
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+
+
+
+  }
+
+  .chart-container3 {
+    /* width: 30%; */
+    /* margin-top: 10vh; */
+    /* margin-bottom: 30px; */
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-left: 25vh; */
+    border-radius: 20px;
+    /* height: 300px; */
+
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+
+
+
+
+
+  }
+
+
+  .chart-container4 {
+    /* width: 30%;
+    height: 350px; */
+    /* margin-top: 10vh; */
+    /* margin-bottom: 30px; */
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-left: 25vh; */
+    border-radius: 20px;
+
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+
+
+
+
+
+  }
+
+  .chart-container5 {
+    /* width: 30%; */
+    /* margin-top: 10vh;
+    margin-bottom: 10vh; */
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* margin-left: 25vh; */
+    border-radius: 20px;
+    /* height: 350px; */
+
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+
+
+
+
+
+  }
+
+
+
+
+
+  #trans {
+    background-image: url('https://imgur.com/fq7BABA.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 12vh;
+    height: 12vh;
+
+  }
+
+  #clublogo {
+    background-image: url('https://imgur.com/iMPMpYI.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 12vh;
+    height: 12vh;
+  }
+
+  .data {
+    background-color: #5C5992;
+    ;
+    flex-basis: 30%;
+    border-radius: 5%;
+    box-shadow: 10px 10px 5px #b3b3b3ec;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+  .num {
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+    border-bottom: 1px solid #ffffff;
+
+  }
+
+  .datatext {
+
+
+    font-size: 20px;
+    color: white;
+  }
+
+  thead {
+    background-color: #5C5992;
+    ;
+    color: aliceblue;
+
+  }
+
+  td {
+    background-color: #efefef;
+    border-bottom: 3px solid rgb(255, 255, 255);
+    padding: 10px;
+  }
+
+
+
+  .btn {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  button[type="submit"]:hover {
+    background-color: rgba(156, 139, 139, 0.17);
+  }
+
+  button[type="submit"] {
+
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: auto;
+    background: #5C5992;
+    border: 3px solid #F5F5F5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+</head>
+
+<body>
+
+  <div id="mainContainer">
+
+    <div class="mainHeading">
+
+      <div id="trans"></div>
+      <div class="heading">PILOT REPORT</div>
+      <div id="clublogo"></div>
+
+    </div>
+
+    <div class="profileSection">
+      <div class="profileImage">
+        <% if (imageurl) { %>
+          <img class="user-photo2" src="<%= imageurl %>" alt="User Photo" id="profile">
+          <% } else { %>
+            <div class="alternate-profile-icon2"><i class="fas fa-user"></i></div>
+            <% } %>
+      </div>
+      <div class="textInfo">
+        <p class="text">Name:</p>
+        <p class="text">Email:</p>
+        <p class="text">Contact</p>
+      </div>
+      <div class="extraInfo">
+        <p id="dateone">Issue Date:</p>
+        <p class="start">Start Date:06-07-24</p>
+      </div>
+    </div>
+
+    <div class="cumulativeData">
+      <div class="data 1">
+        <p class="num">90</p>
+        <p class="datatext">Total Flight Time</p>
+      </div>
+
+      <div class="data 2">
+        <p class="num">30</p>
+        <p class="datatext">Successful Flight</p>
+      </div>
+
+      <div class="data 3">
+        <p class="num">0</p>
+        <p class="datatext">Crashes</p>
+      </div>
+
+      <div class="data 4">
+        <p class="num">80</p>
+        <p class="datatext">Simulation Time</p>
+      </div>
+
+      <div class="data 5">
+        <p class="num">500</p>
+        <p class="datatext">Damage Cost</p>
+      </div>
+
+    </div>
+
+    <div class="graphContainer1">
+
+      <!-- <div class="card1"> -->
+
+      <div class="chart-container1">
+        <canvas id="chart1"></canvas>
+      </div>
+
+      <!-- </div> -->
+
+      <!-- <div class="card2"> -->
+      <div class="chart-container3">
+        <canvas id="chart3"></canvas>
+      </div>
+      <!-- </div> -->
+
+      <!-- <div class="card3"> -->
+
+      <div class="chart-container5">
+        <canvas id="chart5"></canvas>
+      </div>
+
+      <!-- </div> -->
+
+      <!-- <div class="card4"> -->
+
+      <div class="chart-container4">
+        <canvas id="chart4"></canvas>
+      </div>
+
+      <!-- </div> -->
+
+      <!-- <div class="card5"> -->
+
+      <div class="chart-container2">
+        <canvas id="chart2"></canvas>
+      </div>
+
+      <!-- </div> -->
+
+
+    </div>
+
+    <div class="recentTable">
+      <table class="table">
+        <thead>
+          <tr>
+
+            <th>Co-Pilot</th>
+            <th>Flight Duration</th>
+            <th>Battery Number</th>
+            <th>TakeOff Voltage</th>
+            <th>Landing Voltage</th>
+            <th>Wind Speed</th>
+            <th>Wind Direction</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+          <tr>
+
+            <td>samrudha</td>
+            <td>4:00</td>
+            <td>b5</td>
+            <td>12.5</td>
+            <td>11.4</td>
+            <td>7m/s</td>
+            <td>west</td>
+            <td>SAE plane</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="btn">
+      <button type="submit" value="downloadpdf" onclick="generatePDF()" id="pdfbtn">Download report</button>
+    </div> -->
+
+
+  </div>
+
+
+
+
+  <script>
+    //for current date
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let currentDate = `${day}-${month}-${year}`;
+    // let currentDate=new Date().toJSON().slice(0,10);
+    document.querySelector("#dateone").innerHTML = "Issue Date: " + currentDate;
+
+
+    // function generatePDF() {
+    //   window.location.href = '/downloadtemplate';
+    // }
+
+
+
+
+
+    async function generePDF() {
+      const { jsPDF } = window.jspdf;
+
+      const divElement = document.getElementById('mainContainer'); // Replace with your div element ID
+
+      html2canvas(divElement).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+
+        const doc = new jsPDF();
+
+        const imgWidth = 50;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+        doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+        // Save the PDF
+        doc.save('flight_result.pdf');
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  <script>
+    var trueCount = `<%= trueCount || 0 %>`;
+    var falseCount = `<%= falseCount || 0 %>`;
+
+    // function generatepdf() {
+    //       window.location.href = '/downloadpdf';
+    //     }
+
+    console.log("True Count:", trueCount);
+    console.log("False Count:", falseCount);
+
+    var ctx = document.getElementById('chart1').getContext('2d');
+    var barChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Successful flights', 'Crashes'],
+        datasets: [{
+          data: [trueCount, falseCount],
+          backgroundColor: ['rgba(162, 158, 225, 0.5)', 'rgba(162, 158, 225, 0.5)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false // Hide the legend
+          },
+          title: {
+            display: true,
+            text: 'FLIGHT RESULT',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            anchor: 'end',
+            align: 'top',
+            color: '#5C5992',
+            font: {
+              weight: 'bold',
+              size: 16,
+              family: 'Montserrat'
+            },
+            formatter: function (value) {
+              return value === 0 ? '' : value;
+            }
+          }
+        }
+      }
+    });
+
+
+
+    const data2 = JSON.parse('<%- JSON.stringify(data2) %>');
+
+    const labels2 = data2.map(item => item.label);
+    const values2 = data2.map(item => item.value);
+
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: labels2,
+        datasets: [{
+          data: values2,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(0, 255, 1, 0.1)',
+            'rgba(255, 0, 0, 0.1)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(0, 0, 255, 0.5)',
+            'rgba(0, 255, 0, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'DAMAGED ITEMS COST',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            color: '#000',
+            font: {
+              weight: 'bold',
+              family: 'Montserrat'
+            },
+            formatter: (value, context) => {
+              const label = context.chart.data.labels[context.dataIndex];
+              return `${label}: ${value}`;
+            }
+          }
+        }
+      }
+    });
+
+    const data3 = JSON.parse('<%- JSON.stringify(data3) %>');
+
+    const labels3 = data3.map(item => item.label);
+    const values3 = data3.map(item => item.value);
+
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: labels3,
+        datasets: [{
+          data: values3,
+          backgroundColor: ' rgba(203, 202, 225, 0.5)',
+          borderColor: ' rgba(92, 89, 146, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'FLYING DETAILS',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'TYPE OF DRONE',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'FLYING TIME IN MINUTES',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    const data4 = JSON.parse('<%- JSON.stringify(data4) %>'); // Parse the JSON data for chart3
+
+    const labels4 = data4.map(item => item.label);
+    const values4 = data4.map(item => item.value);
+
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+      type: 'pie',
+      data: {
+        labels: labels4,
+        datasets: [{
+          data: values4,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(0, 255, 1, 0.1)',
+            'rgba(255, 0, 0, 0.1)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(0, 0, 255, 0.5)',
+            'rgba(0, 255, 0, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'BATTERY USAGE',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            color: '#000',
+            font: {
+              weight: 'bold',
+              family: 'Montserrat'
+            },
+            formatter: (value, context) => {
+              const label = context.chart.data.labels[context.dataIndex];
+              return `${label}: ${value}`;
+            }
+          }
+        }
+      }
+    });
+    const data5 = JSON.parse('<%- JSON.stringify(data5) %>'); // Parse the JSON data for chart1
+
+    const labels5 = data5.map(item => item.label);
+    const values5 = data5.map(item => item.value);
+
+    const ctx5 = document.getElementById('chart5').getContext('2d');
+    new Chart(ctx5, {
+      type: 'line',
+      data: {
+        labels: labels5,
+        datasets: [{
+
+          data: values5,
+          backgroundColor: 'rgba(0, 255, 1, 0.1)',
+          borderColor: 'rgba(0, 255, 0, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'SIMULATION DETAILS',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'PILOT',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'TIME(minutes)',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat',
+                stepSize: 50
+              }
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+
+</html>

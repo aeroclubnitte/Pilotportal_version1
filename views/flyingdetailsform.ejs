@@ -1,0 +1,184 @@
+<%- include('./reusable/admin_reusable') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+      <script>
+        var link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = 'icon';
+          document.head.appendChild(link);
+        }
+        link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+      </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .topspace{
+          margin-top: 5%;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const profileIcon = document.querySelector(".profile-icon");
+            profileIcon.addEventListener("mouseover", () => {
+                profileIcon.style.transform = "rotate(360deg)";
+            });
+            profileIcon.addEventListener("mouseout", () => {
+                profileIcon.style.transform = "rotate(0deg)";
+            });
+        });
+        function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      const hamburger = document.getElementById('hamburger');
+      
+      if (sidebar.style.width === '250px') {
+        sidebar.style.width = '0';
+        content.style.marginLeft = '70px';
+        hamburger.classList.remove('active');
+      } else {
+        sidebar.style.width = '250px';
+        content.style.marginLeft = '320px';
+        hamburger.classList.add('active');
+      }
+    }
+    </script>
+</head>
+<body>
+  <div class="topspace">
+        <a href="/profile">Profile</a>
+      </nav>
+    <!-- <a href="/profile">
+        <div class="profile-icon">
+            <img src="./OIP.jpeg" alt="Profile Picture" />
+        </div> -->
+    </a>
+    <h1>Flying Details</h1>
+      
+    
+    <form action="/flying" method="POST">
+        <div>
+            <label for="flight_id">Flight Id:</label>
+            <input type="text" id="flight_id" name="flight_id" placeholder="Flight Id" value="<%=userId%>" readonly>
+        </div>
+        <div>
+            <label for="emailid">Email ID:</label>
+            <input type="email" id="emailid" name="emailid" placeholder="Email ID" value="<%= email %>" readonly>
+          </div>
+          <div>
+            <label for="copilot">Copilot:</label>
+            <input type="text" id="copilot" name="copilot" placeholder="Copilot" required>
+          </div>
+
+        <div>
+            <label for="duration">Flight Time:</label>
+            <input type="number" id="duration" name="duration" placeholder="Duration" required>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" placeholder="Date" required>
+        </div>
+        <div>
+            <label for="mode">Mode:</label>
+            <input type="text" id="mode" name="mode" placeholder="Mode" required>
+        </div>
+        <div>
+            <label for="Batteryid">Battery ID:</label>
+            <select name="batteryid" id="batteryid"> 
+                <% batteries.forEach(option => { %>
+                  <option value="<%= option.batteryid %>"><%= option.batteryid %></option>
+                <% }); %>
+              </select>
+        </div>
+        <div>
+            <label for="tovoltage">Take Off Voltage:</label>
+            <input type="text" id="takeoffvoltage" name="takeoffvoltage" placeholder="Voltage" required>
+        </div>
+        <div>
+            <label for="lvoltage">Landing Voltage:</label>
+            <input type="text" id="landingvoltage" name="landingvoltage" placeholder="Voltage" required>
+        </div>
+        <div>
+            <label for="windspeed">Wind Speed:</label>
+            <input type="text" id="windspeed" name="windspeed" placeholder="windspeed" required>
+        </div>
+        <div>
+            <label for="direction">Wind Direction:</label>
+            <select name="winddirection" id="winddirection"> 
+                <% direction.forEach(option => { %>
+                  <option value="<%= option.winddirection %>"><%= option.winddirection %></option>
+                <% }); %>
+              </select>
+        </div>
+        <div>
+            <label for="drone_id">Type of drone:</label>
+            <select name="drone_id" id="drone_id"> 
+                <% options.forEach(option => { %>
+                  <option value="<%= option.droneId %>"><%= option.droneName %></option>
+                <% }); %>
+              </select>
+        </div>
+        <div>
+            <label>Successful Flight?</label>
+            <button type="submit" name="answer" value="yes">Yes</button>
+            <button type="submit" name="answer" value="no">No</button>
+        </div>
+        <div>
+            <a href="/logout">Log Out</a>
+        </div>
+        
+    </form>
+  </div>
+</body>
+</html>

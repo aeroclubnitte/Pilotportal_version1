@@ -1,0 +1,305 @@
+<%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+    <script>
+      var link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+    
+
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .topspace{
+          margin-top: 5%;
+        }
+        
+        .adddetails {
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 43px;
+            text-align: center;
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 638px;
+            height: 700px;
+            background: rgb(255, 255, 255);
+            border-radius: 0px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 37px;
+            color:black;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type='text'], input[type='email'], input[type='date'], input[type='mobile'], select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 37px;
+            color: #7F8685;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-top: 0px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+
+        button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width: 100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left:250px
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        
+        .user-photo-container {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+  }
+
+  .user-name {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .alternate-profile-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #333;
+  }
+  fieldset {
+    margin-bottom: 20px; /* Adjust the spacing between fieldsets */
+    padding: 12px; /* Add padding around fieldsets */
+    border: 0px solid #f7f4f4; /* Add border to fieldsets */
+    background-color: #f2f2f3; /* Set the background color of fieldsets */
+    border-radius: 0px;}
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr); /* Create three equal columns */
+  gap: 20px; /* Add
+   a gap between the items */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+    .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 40px; /* Adjust the gap between input fields */
+}
+
+
+.input-container input {
+  width: 100%; /* Adjust the width of the input fields */
+}
+  .input-container input {
+    margin: -4px; /* Adjust the spacing between the input fields */
+  }
+
+
+
+  #imagePreview{
+    width: 30%;
+    height:30%;
+    object-fit:contain;
+  }
+    </style>
+    
+</head>
+<body>
+  <div class="topspace">
+   
+    <div class='adddetails'>
+      Edit your Details
+      <div class="user-photo-container">
+        <% if (imageUrl) { %>
+          <img class="user-photo" src="<%= imageUrl %>" alt="User Photo">
+        <% } else { %>
+          <div class="alternate-profile-icon"><i class="fas fa-user"></i></div>
+        <% } %>
+        <div class="user-name"><%= profileData.name %></div>
+      </div>
+    </div>
+
+    <form action="/update" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <div class="input-container">
+        <div>
+            <label for="name"><b>Name</b></label>
+            <input type="text" id="name" placeholder="Name" value="<%= profileData.name %>" name="name" required>
+        </div></div></fieldset>
+        <fieldset>
+            <div class="input-container">
+        
+        <div>
+            <label for="email_id"><b>Email_ID</b></label>
+            <input type="email" id="emailid" value="<%= profileData.emailid %>" name="emailid" required readonly>
+        </div></div></fieldset>
+        
+        <fieldset>
+            <div class="input-container">
+        <div>
+            <label for="mobile_no"><b>Mobile_Number</b></label>
+            <input type="mobile" id="mobile_no" name="mobile_no" value="<%= profileData.mobileno %>" name="mobile_no" required>
+        </div>
+        
+        
+        <div>
+            <label for="dob"><b>DOB</b></label>
+            <input type="date" id="dob" placeholder="DOB" value="<%= new Date(profileData.dob).toISOString().substring(0, 10) %>" name="dob" required>
+        </div></div></fieldset>
+
+
+        <fieldset>
+          <div class="input-container">
+        <div class>
+          <label for="startdate"><b>Start Date:</b></label>
+          <input type="date" id="startdate" placeholder="start date" value="<%= new Date(profileData.startdate).toISOString().substring(0, 10) %>" name="startdate" required>
+      </div>
+
+    </div></fieldset>
+
+
+
+
+
+        <fieldset>
+            <div class="input-container">
+        <div>
+            <label for="type_of_drone_experience"><b>Type of drone experience</b></label>
+            <input type="text" id="type_of_drone_experience" value=" <%= profileData.drone_experience %>" name="type_of_drone_experience" required>
+        </div>
+
+        <div>
+            <label for="honors_and_achievements"><b>Honors and Achievements</b></label>
+            <input type="text" id="honors_and_achievements"  value="<%= profileData.honours_achievements %>" name="honors_and_achievements" required>
+        </div></div></fieldset>
+        <fieldset>
+            <div class="input-container">
+        
+        <div>
+            <label for="image">Profile Image</label>
+            <input type="file" id="image"  name="imagefile" accept="image/*" />
+            <img src="<%= imageUrl %>" id="imagePreview" />
+        </div></div></fieldset>
+        
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+        
+    </form>
+  </div>
+  <script src="https://kit.fontawesome.com/910477f9a1.js" crossorigin="anonymous"></script>
+  <script>
+    const imageInput = document.getElementById('image');
+const imagePreview = document.getElementById('imagePreview');
+
+imageInput.addEventListener('change', () => {
+  const file = imageInput.files[0];
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    imagePreview.src = reader.result;
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
+
+  </script>
+</body>
+</html>

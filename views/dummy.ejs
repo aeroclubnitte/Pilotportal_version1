@@ -1,0 +1,394 @@
+  <!-- Other profile information or styling as needed -->
+ <!-- ------------------------------------------------------------------------------------ -->
+
+  <!-- <div class="topspace">
+    <div class="user-photo-container2">
+      <% if (imageData && imageContentType) { %>
+        <img class="user-photo2" src="data:<%- imageContentType %>;base64,<%- imageData.toString('base64') %>" alt="User Photo">
+      <% } else { %>
+        <div class="alternate-profile-icon2"><i class="fas fa-user"></i></div>
+      <% } %>
+      <div class="user-name2"><%- name ? name : 'Name' %></div>
+    </div>
+    <div class="user-info-card"> -->
+      <!-- Add the user photo element -->
+      <!-- <div class="user-photo-container">
+        <% if (imageData && imageContentType) { %>
+          <img class="user-photo" src="data:<%- imageContentType %>;base64,<%- imageData.toString('base64') %>" alt="User Photo">
+        <% } else { %>
+          <div class="alternate-profile-icon"><i class="fas fa-user"></i></div>
+        <% } %>
+        <div class="user-name"><%- name ? name : 'Name' %></div>
+      </div>
+      <div class="form-container">
+        <form>
+            <fieldset>
+                <div class="input-container">
+          <div>
+            <label class="form-label" for="email_id"><b>Email_ID:</b></label>
+            <span><%- email %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for="mobile_no"><b>Mobile_Number:</b></label>
+            <span><%- mobile_no %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for="dob"><b>DOB:</b></label>
+            <span><%- dob %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for="Type of Drone Experience"><b>Type of Drone Experience:</b></label>
+            <span><%- type_of_drone_experience %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for="Honors and Achievements"><b>Honors and Achievements:</b></label>
+            <span><%- honors_and_achievements %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for='Total Flying Hours'><b>Total Flying Hours:</b></label>
+            <span><%- duration1 %></span>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label class="form-label" for='Total Simulation Time'><b>Total Simulation Time:</b></label>
+            <span><%- duration2 %></span>
+          </div></div></fieldset>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+   <!-- ------------------------------------------------------------------------------------ -->
+
+   <%- include('./reusable/member_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <title>Infinity Drones Pilot Portal</title>
+<script>
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+</script>
+
+    <style>
+        /* Existing styles */
+        
+        /* New style for user information card */
+        .user-info-card {
+            margin: 20px auto;
+            max-width: 450px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: rgba(212, 211, 227, 0.5);
+            border-radius: 35px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 25px;
+            color: black;
+            align-items: center;
+            text-align: end;
+            margin-top: 150px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* New style for user photo container */
+        .user-photo-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        /* New style for user photo */
+        .user-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* New style for alternate profile icon */
+        .alternate-profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #333;
+        }
+        
+        /* New style for user name */
+        .user-name {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        /* New style for form container */
+        .form-container {
+            margin-top: 20px;
+            text-align: left; 
+            margin-left: 10px;/* Align the form content to the left */
+        }
+        
+        /* New style for form labels */
+        .form-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 250px; /* Adjust the width as needed */
+        }
+        
+        /* New style for form inputs */
+        .form-input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 37px;
+            color: white;
+            background: #ffffff;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* New style for form submit button */
+        .form-submit-button {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width: 100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-submit-button:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        .user-photo2{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* New style for alternate profile icon */
+        .alternate-profile-icon2 {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #333;
+        }
+        .user-name2{
+            color:black;
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Pop-up effect */
+        .user-info-card:hover {
+            transform: scale(1.05);
+        }
+        fieldset {
+    margin-bottom: 20px; /* Adjust the spacing between fieldsets */
+    padding: 12px; /* Add padding around fieldsets */
+    border: 0px solid #f7f4f4; /* Add border to fieldsets */
+    background-color: #f2f2f3; /* Set the background color of fieldsets */
+    border-radius: 0px;}
+
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr); /* Create three equal columns */
+  gap: 20px; /* Add
+   a gap between the items */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+    .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 40px; /* Adjust the gap between input fields */
+}
+
+
+.input-container input {
+  width: 100%; /* Adjust the width of the input fields */
+}
+  .input-container input {
+    margin: -4px; /* Adjust the spacing between the input fields */
+  }
+
+    </style>
+</head>
+<body>
+
+  <!-- <div class="user-info-card">
+  <h1>User Profile</h1>
+  <img src="<%= imageUrl %>" alt="User Image">
+</div> -->
+
+<div class="topspace">
+<div class="user-photo-container2">
+  <% if (imageUrl) { %>
+    <img class="user-photo2" src="<%= imageUrl %>" alt="User Photo">
+  <% } else { %>
+    <div class="alternate-profile-icon2"><i class="fas fa-user"></i></div>
+  <% } %>
+  <div class="user-name2"><%- name ? name : 'Name' %></div>
+</div>
+
+<div class="user-photo-container">
+  <% if (imageUrl) { %>
+    <img class="user-photo" src="<%= imageUrl %>" alt="User Photo">
+  <% } else { %>
+    <div class="alternate-profile-icon"><i class="fas fa-user"></i></div>
+  <% } %>
+  <div class="user-name"><%- name ? name : 'Name' %></div>
+</div>
+<div class="user-info-card">
+<div class="form-container">
+  <form>
+      <fieldset>
+          <div class="input-container">
+    <div>
+      <label class="form-label" for="email_id"><b>Email_ID:</b></label>
+      <span><%- email %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for="mobile_no"><b>Mobile_Number:</b></label>
+      <span><%- mobile_no %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for="dob"><b>DOB:</b></label>
+      <span><%- dob %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for="Type of Drone Experience"><b>Type of Drone Experience:</b></label>
+      <span><%- type_of_drone_experience %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for="Honors and Achievements"><b>Honors and Achievements:</b></label>
+      <span><%- honors_and_achievements %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for='Total Flying Hours'><b>Total Flying Hours:</b></label>
+      <span><%- duration1 %></span>
+    </div></div></fieldset>
+    <fieldset>
+      <div class="input-container">
+    <div>
+      <label class="form-label" for='Total Simulation Time'><b>Total Simulation Time:</b></label>
+      <span><%- duration2 %></span>
+    </div></div></fieldset>
+  </form>
+</div>
+</div>
+</div>
+
+
+
+
+<fieldset>
+  <div class="input-container">
+<div class>
+  <label for="duration"><b>Total Flight Hours</b></label>
+  <input type="text" id="duration1" placeholder="Duration" value="" name="duration1" required>
+</div>
+<div class>
+<label for="duration"><b>Total Simulation Time</b></label>
+<input type="text" id="duration2" placeholder="Duration" value="" name="duration2" required>
+</div></div></fieldset>
+
+
+
+
+  
+  <!-- Add Font Awesome script -->
+  <script src="https://kit.fontawesome.com/910477f9a1.js" crossorigin="anonymous"></script>
+</body>
+</html>

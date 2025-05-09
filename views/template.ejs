@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <> -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+
+
+  <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://imgur.com/iMPMpYI.png';
+
+
+  </script>
+  <style>
+    .mainContainer {
+
+      height: 100%;
+
+      margin-bottom: 10px;
+
+     
+        
+   
+      
+
+
+
+    }
+
+    .mainHeading {
+      font-family: 'montserrat';
+      font-size: 4rem;
+      background-color: #f7f7f7e7;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-around;
+      font-weight: bold;
+      margin-bottom: 5rem;
+      align-items: center;
+      color: #5c5992ef;
+    }
+
+
+
+
+
+
+    #profile {
+      width: 180px;
+      height: 180px;
+      border-radius: 30%;
+      object-fit: cover;
+      padding: 2rem;
+    }
+
+    .profileSection {
+      background-color: #5C5992;
+      ;
+      display: flex;
+      color: white;
+      flex-flow: space-between;
+      align-content: center;
+      box-shadow: 10px 10px 5px #b3b3b3ec;
+      margin-bottom: 5rem;
+    }
+
+
+
+
+    .profileImage {
+
+      flex-basis: 30%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .textInfo {
+
+
+      display: flex;
+      flex-direction: column;
+      align-content: space-around;
+      justify-content: center;
+
+      flex-basis: 40%;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      font-size: 1.3vh;
+
+    }
+
+    .extraInfo {
+
+      flex-basis: 20%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      font-size: 1vh;
+    }
+
+    .cumulativeData {
+
+      display: flex;
+      gap: 2rem;
+      justify-content: space-around;
+      margin-bottom: 5rem;
+      flex-wrap: wrap;
+
+    }
+
+    .graphContainer1 {
+
+
+      gap: 15px;
+
+      height: auto;
+      /* width: 97%; */
+      margin-bottom: 3rem;
+      /* display: grid;
+    grid-template-columns: 30% 3% 29% 29%;
+    grid-template-rows: 42% 42%; */
+      /* column-gap: 30px;
+    row-gap: 30px; */
+      background-color: #5C5992;
+
+      /* padding: 20px 0px 0 20px; */
+
+
+
+    }
+
+    .recentTable {
+      background-color: #5C5992;
+      margin-bottom: 10px;
+      
+
+    }
+
+
+    .chart-container1 {
+
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      height: 300px;
+      width: 300px;
+      border-radius: 20px;
+    
+
+
+
+      /* grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+ */
+
+
+
+
+
+    }
+
+    .chart-container2 {
+
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     
+      border-radius: 20px;
+      height: 300px;
+      width: 300px;
+
+      /* grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+ */
+
+
+    }
+
+    .chart-container3 {
+
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      
+      border-radius: 20px;
+      height: 300px;
+      width: 300px;
+
+      /* grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+ */
+
+
+     
+
+
+    }
+
+
+    .chart-container4 {
+      height: 300px;
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     
+      border-radius: 20px;
+
+      /* grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+ */
+
+
+
+
+
+    }
+
+    .chart-container5 {
+      height: 300px;
+      width: 300px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      border-radius: 20px;
+
+      /* grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3; */
+
+
+
+
+
+
+    }
+
+
+
+
+
+    #trans {
+      background-image: url('https://imgur.com/fq7BABA.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 8vh;
+      height: 8vh;
+
+    }
+
+    #clublogo {
+      background-image: url('https://imgur.com/iMPMpYI.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 8vh;
+      height: 8vh;
+    }
+
+    .data {
+      background-color: #5C5992;
+      margin-bottom: 2rem;
+      flex-basis: 45%;
+      border-radius: 5%;
+      box-shadow: 10px 10px 5px #b3b3b3ec;
+      display: flex;
+      flex-direction: column;
+      column-gap: 1px;
+      align-items: center;
+
+    }
+
+    .num {
+      font-weight: bold;
+      font-size: 30px;
+      color: white;
+     
+      padding-top: 10px;
+
+    }
+
+    .datatext {
+
+     
+      font-size: 17px;
+      color: white;
+    }
+
+    thead {
+      background-color: #5C5992;
+      /* font-size: 15px; */
+      color: aliceblue;
+
+    }
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+    td {
+      /* font-size: 10px; */
+      background-color: #efefef;
+      border-bottom: 3px solid rgb(255, 255, 255);
+      border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1px;
+    word-wrap: break-word;
+    }
+
+    .graph {
+      margin-top: 30px;
+      display: inline-flex;
+      justify-content: space-around;
+      /* gap: 40px; */
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .graph2 {
+      display: inline-flex;
+      justify-content: space-around;
+      /* gap: 40px; */
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .graph3 {
+      display: flex;
+      justify-content: center;
+      background-color: #5C5992;
+    
+    padding-bottom: 30px ;
+    }
+
+    .btn {
+      display: flex;
+
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    button[type="submit"]:hover {
+      background-color: rgba(156, 139, 139, 0.17);
+    }
+
+    button[type="submit"] {
+
+      padding: 8px 16px;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      width: auto;
+      background: #5C5992;
+      border: 3px solid #F5F5F5;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* .date-column {
+     width: 150px; 
+    white-space: nowrap; 
+  } */
+
+
+
+    .tablehead{
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+   
+      color:#5C5992;
+    }
+
+table{
+    page-break-inside: auto;
+}
+
+tr{
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+    .page-content{
+      border: 5px solid #000000; 
+            padding: 20px;
+            height: 100%; 
+           
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+    }
+
+.foot{
+  display: flex;
+  justify-content: space-between;
+}
+.page-break-after {
+    page-break-after: always;
+  }
+
+
+  .page-break-before {
+    page-break-before: always;
+  }
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="page-content">
+  <div class="mainContainer">
+    <div class="mainHeading">
+
+      <div id="trans"></div>
+      <div class="heading">PILOT REPORT</div>
+      <div id="clublogo"></div>
+
+    </div>
+   
+    <div class="profileSection">
+      
+      <div class="profileImage">
+        <% if (imageurl) { %>
+          <img class="user-photo2" src="<%= imageurl %>" alt="User Photo" id="profile">
+          <% } else { %>
+            <div class="alternate-profile-icon2"><i class="fas fa-user"></i></div>
+            <% } %>
+      </div>
+      <% if (maindetails.length > 0){ %>
+      <div class="textInfo">
+        <p class="text">Name : <%= maindetails[0].name %></p>
+        <p class="text">Email : <%= maindetails[0].emailid %></p>
+        <p class="text">Contact : <%= maindetails[0].mobileno %></p>
+      </div>
+      <div class="extraInfo">
+        <p id="dateone">Issue Date : </p>
+        <p class="start">Start Date : <%= new Date(maindetails[0].startdate).toISOString().substring(0, 10)%></p>
+      </div>
+    </div>
+
+    <div class="cumulativeData page-break-after ">
+      <div class="data 1">
+        <% if (totaldur){ %>
+          <p class="num"><%= totaldur %> min </p>
+          <%  }else{  %>
+            <p class="num">0 min</p>
+            <%  } %>
+        <p class="datatext">Total Flight Time</p>
+      </div>
+
+      <div class="data 2">
+        <p class="num"><%= trueCount %></p>
+        <p class="datatext">Successful Flight</p>
+      </div>
+
+      <div class="data 3">
+        <p class="num"><%= falseCount %></p>
+        <p class="datatext">Crashes</p>
+      </div>
+
+      <div class="data 4">
+        <% if (maindetails[0].total_simulation_time){ %>
+        <p class="num"><%= maindetails[0].total_simulation_time %> hrs</p>
+        <%  }else{  %>
+          <p class="num">0 hrs</p>
+          <%  } %>
+        <p class="datatext">Simulation Time</p>
+      </div>
+
+      <div class="data 5">
+        <p class="num">Rs <%= totalsum %></p>
+        <p class="datatext">Damage Cost</p>
+      </div>
+     
+      <div class="data ">
+        <p class="num"> <%= Number(trueCount) + Number(falseCount) %></p>
+        <p class="datatext">Total Flight</p>
+      </div>
+
+      <%  } %>
+
+    </div>
+
+    <div class="graphContainer1 page-break-before page-break-after">
+
+      <!-- <div class="card1"> -->
+      <div class="graph">
+        <div class="chart-container1">
+          <canvas id="chart1"></canvas>
+        </div>
+
+        <!-- </div> -->
+
+        <!-- <div class="card2"> -->
+        <div class="chart-container3">
+          <canvas id="chart3"></canvas>
+        </div>
+        <!-- </div> -->
+
+        <!-- <div class="card3"> -->
+
+
+      </div>
+      <!-- </div> -->
+
+      <!-- <div class="card4"> -->
+      <div class="graph2">
+
+
+        <div class="chart-container5">
+          <canvas id="chart5"></canvas>
+        </div>
+
+
+
+        <div class="chart-container4">
+          <canvas id="chart4"></canvas>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <!-- <div class="card5"> -->
+    
+      <!-- </div> -->
+      <div class="graph3">
+        <div class="chart-container2">
+          <canvas id="chart2"></canvas>
+        </div>
+      </div>
+  
+
+    </div>
+
+    
+
+    <div class="page-break-before ">
+   <h3 class="tablehead">Recent Flight Details:</h3>
+    <div class="recentTable">
+      <table class="table">
+       
+        <thead>
+          <tr>
+            <th class="date-column">Date</th>
+            <th>Co-Pilot</th>
+            <th>Flight Duration</th>
+            <th>Battery Number</th>
+            <th>TakeOff Voltage</th>
+            <th>Landing Voltage</th>
+            <th>Wind Speed</th>
+            <!-- <th>Wind Direction</th> -->
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% if (tabledetails.length > 0){ %>
+            <tr>
+           
+            <% for(let i=tabledetails.length-1;i>=Math.max(tabledetails.length - 10, 0);i--){ %>
+              <% console.log(tabledetails.length);%>
+              <% console.log(i);%>
+             
+            <%  let dateObj=new Date( tabledetails[i].date)     %>
+            <% var formattedDate = ("0" + dateObj.getDate()).slice(-2) + "-" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "-" + dateObj.getFullYear(); %>
+           
+              <td class="date-column"> <%= formattedDate %></td>
+              <td><%= tabledetails[i].copilot %></td>
+              <td><%= tabledetails[i].duration %></td>
+              <td><%= tabledetails[i].batteryid %></td>
+              <td><%= tabledetails[i].takeoffvoltage %></td>
+              <td><%= tabledetails[i].landingvoltage %></td>
+              <td><%= tabledetails[i].windspeed %></td>
+              <!-- <td><%= tabledetails[i].winddirection %></td> -->
+              <td><%= tabledetails[i].flightdescription %></td>
+            </tr>
+              <%  } %>
+           
+          
+          
+              <% } else { %>
+                <tbody>
+                  <tr>
+                    <td colspan="8" class="no-data"><center><h2>NO RECENT FLIGHT</h2></center></td>
+                  </tr>
+                </tbody>
+                <% } %>
+      </table>
+    </div>
+  </div>  
+ 
+ <hr>
+    <footer class="foot">
+  <div class="www">www.aeroclubnitte.com</div>
+  <div class="aero">@Aeroclub</div>
+ </footer>
+  </div>
+
+
+</div>
+
+
+  <script>
+    //for current date
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let currentDate = `${day}-${month}-${year}`;
+    // let currentDate=new Date().toJSON().slice(0,10);
+    document.querySelector("#dateone").innerHTML = "Issue Date: " + currentDate;
+
+
+    // function generatePDF() {
+    //   window.location.href = '/downloadtemplate';
+    // }
+
+
+
+
+
+    // async function generePDF() {
+    //   const { jsPDF } = window.jspdf;
+
+    //   const divElement = document.getElementById('mainContainer'); // Replace with your div element ID
+
+    //   html2canvas(divElement).then(canvas => {
+    //     const imgData = canvas.toDataURL('image/png');
+
+    //     const doc = new jsPDF();
+
+    //     const imgWidth = 50;
+    //     const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+    //     doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+    //     // Save the PDF
+    //     doc.save('flight_result.pdf');
+    //   });
+    // }
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  <script>
+    var trueCount = `<%= trueCount || 0 %>`;
+    var falseCount = `<%= falseCount || 0 %>`;
+
+    // function generatepdf() {
+    //       window.location.href = '/downloadpdf';
+    //     }
+
+    console.log("True Count:", trueCount);
+    console.log("False Count:", falseCount);
+
+    var ctx = document.getElementById('chart1').getContext('2d');
+    var barChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Successful flights', 'Crashes'],
+        datasets: [{
+          data: [trueCount, falseCount],
+          backgroundColor: ['rgba(162, 158, 225, 0.5)', 'rgba(162, 158, 225, 0.5)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false // Hide the legend
+          },
+          title: {
+            display: true,
+            text: 'FLIGHT RESULT',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            anchor: 'end',
+            align: 'top',
+            color: '#5C5992',
+            font: {
+              weight: 'bold',
+              size: 16,
+              family: 'Montserrat'
+            },
+            formatter: function (value) {
+              return value === 0 ? '' : value;
+            }
+          }
+        }
+      }
+    });
+
+
+
+    const data2 = JSON.parse('<%- JSON.stringify(data2) %>');
+
+    const labels2 = data2.map(item => item.label);
+    const values2 = data2.map(item => item.value);
+
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: labels2,
+        datasets: [{
+          data: values2,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(0, 255, 1, 0.1)',
+            'rgba(255, 0, 0, 0.1)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(0, 0, 255, 0.5)',
+            'rgba(0, 255, 0, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'DAMAGED ITEMS COST',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            color: '#000',
+            font: {
+              weight: 'bold',
+              family: 'Montserrat'
+            },
+            formatter: (value, context) => {
+              const label = context.chart.data.labels[context.dataIndex];
+              return `${label}: ${value}`;
+            }
+          }
+        }
+      }
+    });
+
+    const data3 = JSON.parse('<%- JSON.stringify(data3) %>');
+
+    const labels3 = data3.map(item => item.label);
+    const values3 = data3.map(item => item.value);
+
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: labels3,
+        datasets: [{
+          data: values3,
+          backgroundColor: ' rgba(203, 202, 225, 0.5)',
+          borderColor: ' rgba(92, 89, 146, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'FLYING DETAILS',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'TYPE OF DRONE',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'FLYING TIME IN MINUTES',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    const data4 = JSON.parse('<%- JSON.stringify(data4) %>'); // Parse the JSON data for chart3
+
+    const labels4 = data4.map(item => item.label);
+    const values4 = data4.map(item => item.value);
+
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+      type: 'pie',
+      data: {
+        labels: labels4,
+        datasets: [{
+          data: values4,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(0, 255, 1, 0.1)',
+            'rgba(255, 0, 0, 0.1)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(0, 0, 255, 0.5)',
+            'rgba(0, 255, 0, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'BATTERY USAGE',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          datalabels: {
+            color: '#000',
+            font: {
+              weight: 'bold',
+              family: 'Montserrat'
+            },
+            formatter: (value, context) => {
+              const label = context.chart.data.labels[context.dataIndex];
+              return `${label}: ${value}`;
+            }
+          }
+        }
+      }
+    });
+    const data5 = JSON.parse('<%- JSON.stringify(data5) %>'); // Parse the JSON data for chart1
+
+    const labels5 = data5.map(item => item.label);
+    const values5 = data5.map(item => item.value);
+
+    const ctx5 = document.getElementById('chart5').getContext('2d');
+    new Chart(ctx5, {
+      type: 'line',
+      data: {
+        labels: labels5,
+        datasets: [{
+
+          data: values5,
+          backgroundColor: 'rgba(0, 255, 1, 0.1)',
+          borderColor: 'rgba(0, 255, 0, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'SIMULATION DETAILS',
+            font: {
+              weight: 'bold',
+              size: 20,
+              family: 'Montserrat'
+            }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'PILOT',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat'
+              }
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'TIME(minutes)',
+              font: {
+                weight: 'bold',
+                size: 12,
+                family: 'Montserrat',
+                stepSize: 50
+              }
+            },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+
+
+  </script>
+
+
+
+
+</body>
+
+</html>

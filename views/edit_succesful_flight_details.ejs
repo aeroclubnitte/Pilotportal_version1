@@ -1,0 +1,247 @@
+
+<%- include('./reusable/admin_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+    <script>
+      var link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+    </script>
+   
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+        }
+        .topspace{
+          margin-top: 5%;
+        }
+        
+        .adddetails {
+            text-align: center;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 43px;
+            text-align: center;
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 638px;
+            height: 930px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 37px;
+            color:black;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type='text'],input[type='email'],input[type='date'],input[type='number'],select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 27px;
+            color: #7F8685;
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+   
+}
+        
+
+        button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width:100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+
+        fieldset {
+    margin-bottom: 20px; /* Adjust the spacing between fieldsets */
+    padding: 12px; /* Add padding around fieldsets */
+    border: 0px solid #f7f4f4; /* Add border to fieldsets */
+    background-color: #f2f2f3; /* Set the background color of fieldsets */
+    border-radius: 0px;}
+    .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr); /* Create three equal columns */
+  gap: 20px; /* Add
+   a gap between the items */
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+    .input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px; /* Adjust the gap between input fields */
+}
+
+
+.input-container input {
+  width: 100%; /* Adjust the width of the input fields */
+}
+  .input-container input {
+    margin: -4px; /* Adjust the spacing between the input fields */
+  }
+
+    </style>
+    
+</head>
+<body>
+  <div class="topspace">
+    <div class='adddetails'>
+      Edit Successful Flight Details
+    </div>
+      
+    <form action="/edit_succesfulflightdetails" method="POST">
+       
+        <div>
+            
+            <input type="hidden" id="flight_id" name="flight_id" value=<%-schedule_details.flight_id%>>
+        </div>
+        <fieldset>
+            <div class="input-container">
+        
+        <div>
+            <label for="emailid">Email ID:</label>
+            <input type="email" id="emailid" name="emailid" value=<%-schedule_details.emailid%>>
+          </div></div></fieldset>
+          <fieldset>
+            <div class="input-container">
+          <div>
+            <label for="copilot">Copilot:</label>
+            <input type="text" id="copilot" name="copilot" value=<%-schedule_details.copilot%>>
+          </div>
+          </div></fieldset>
+          <fieldset>
+            <div class="container">
+        <div>
+            <label for="duration">Flight Time:</label>
+            <input type="number"  name="duration" value=<%-schedule_details.duration%>>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+             <% var dateObj = new Date(schedule_details.date); %>
+            <% var day = ("0" + dateObj.getDate()).slice(-2); %>
+            <% var month = ("0" + (dateObj.getMonth() + 1)).slice(-2); %>
+            <% var year = dateObj.getFullYear(); %> 
+            <input type="date" id="date" name="date" value="<%= year + '-' + month + '-' + day %>">
+                 
+              
+        </div>
+        <div>
+            <label for="mode">Mode:</label>
+            <input type="text" id="mode" name="mode" value=<%-schedule_details.mode%>>
+        </div></div></fieldset>
+        <fieldset>
+            <div class="container">
+        <div>
+            <label for="batteryid">Batter ID:</label>
+            <input type="text" id="batteryid" name="batteryid" value=<%-schedule_details.batteryid%>>
+        </div>
+        <div>
+            <label for="takeoffvoltage">Take Off Voltage:</label>
+            <input type="text" id="takeoffvoltage" name="takeoffvoltage" value=<%-schedule_details.takeoffvoltage%>>
+        </div>
+        <div>
+            <label for="lvoltage">Landing Voltage:</label>
+            <input type="text" id="landingvoltage" name="landingvoltage" value=<%-schedule_details.landingvoltage%>>
+        </div>
+        </div></fieldset>
+        <fieldset>
+            <div class="input-container">
+        <div>
+            <label for="windspeed">Wind Speed:</label>
+            <input type="text" id="windspeed" name="windspeed" value=<%-schedule_details.windspeed%>>
+        </div>
+
+        <div>
+            <label for="wind_direction">Wind Direction:</label>
+            <input type="text" id="winddirection" name="winddirection" value=<%-schedule_details.winddirection%>>
+        </div>
+</div></fieldset>
+<fieldset>
+    <div class="input-container">
+        <div>
+            <label for="drone_id">Type of drone:</label>
+            <input type="text" id="drone_id" name="drone_id" value=<%-schedule_details.drone_id%>>
+        </div></div></fieldset>
+        <fieldset>
+            <div class="input-container">
+        <div>
+            <label for="flight_succesful">flight_succesful?</label>
+            <input type="text" id="result" name="result" value="<%-schedule_details.result%>" readonly>
+        </div></div></fieldset>
+        <center> <button type="submit" ONCLICK="alert('Succesfully updated flight details...')">Update</button></center>
+        
+    </form>
+  
+  </div>
+</body>
+</html>

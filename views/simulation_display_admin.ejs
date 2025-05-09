@@ -1,0 +1,110 @@
+<%- include('./reusable/admin_reusable') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Drones Pilot Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .container {
+            margin: 5% auto;
+            width: 70%;
+            padding-left: 170px;
+            padding-top: 4%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #5C5992;
+            color: white;
+        }
+        tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        .btn {
+            font-size: 16px;
+            border-radius: 8px;
+            width: 80px;
+            background: #5C5992;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #a4a2d7;
+        }
+        h1 {
+            font-size: 25px;
+            color: #5C5992;
+            margin-top: 0;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1><b>SIMULATION DETAILS</b></h1>
+        </div>
+        <center>
+            <table id="simulationtable">
+                <thead>
+                    <tr>
+                        <th>Flight-Id</th>
+                        <th>Date</th>
+                        <th>Pilot</th> 
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Description</th>
+                        <th>Duration(minutes)</th> 
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% simulations.forEach(simulation => { %>
+                        <tr>
+                            <td><%= simulation.flight_id %></td>
+                            <td><%= new Date(simulation.date).toLocaleDateString() %></td>
+                            <td><%= simulation.email %></td> 
+                            <td><%= simulation.start_time %></td>
+                            <td><%= simulation.end_time %></td>
+                            <td><%= simulation.description %></td>
+                            <td><%= simulation.total_minutes %></td> 
+                            <td>
+                                <form action="/edit_simulationdetails" method="POST" style="display:inline;">
+                                    <input type="hidden" name="flight_id" value="<%= simulation.flight_id %>">
+                                    <button class="btn" type="submit">Edit</button>
+                                </form>
+                                <form action="/all_simulationdetails" method="POST" style="display:inline;">
+                                    <input type="hidden" name="deleteSimulation" value="<%= simulation.flight_id %>">
+                                    <button class="btn" ONCLICK="alert('Successfully Deleted..')" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </center>
+    </div>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<%- include('./reusable/admin_reusable') %>
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+ 
+
+        <style>
+        
+          
+        body {
+            background-color:white;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+         /*to adjust the page setup*/ 
+         .container {
+        padding: 55px;
+        height: 450px;
+        width: 80%;
+        }
+        input[type=text]
+        {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f9f3f3;
+          }
+          
+          
+        input[type=text]:focus
+        {
+          background-color: #ddd;
+          outline: none;
+        }
+        
+        
+          
+                       
+        table {
+    
+        border:none;
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        }
+                      
+        
+        th {
+          width: 190px;
+          text-align: center;
+          padding: 5px;
+          background-color:rgba(131, 127, 204, 0.5);
+          border:none;
+          font-family: 'Montserrat', sans-serif;
+          }
+          td {
+          width: 190px;
+          text-align: center;
+          padding: 5px;
+          background-color:rgba(203, 202, 225, 0.5);
+          border:none;
+          font-family: 'Montserrat', sans-serif;
+         
+          }
+          .overflow-hidden {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+                          
+        .btn1 {
+            color:white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        width: 100px;
+        font-family: 'Montserrat', sans-serif;}
+
+        
+       
+    
+        
+        
+        .container {
+        margin-left: 15%;
+        }
+       
+        .d{
+          width: 300%;
+          }
+          #event{
+            display: none;
+          }
+          #flight_id,#drone_name,#emailid,#damaged_parts,#reason,#copilot{
+            padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background:none;
+        font-size: 15px;
+        width:100%;
+        text-align: center;
+
+          }
+          th{
+            font-size: 20px;
+
+            
+          }
+          table{
+            width: 100%;
+            border:none;
+          }
+          h1{
+         
+         font-family: 'Montserrat', Arial, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 43px;
+     
+      color: #5C5992;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin-left:340px;
+
+  }
+  .dropdown-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #f2f2f2;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-top: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+    }
+
+    .dropdown-option {
+        display: block;
+        margin-bottom: 8px;
+        margin-left: 0%;
+        gap: 10px;
+    }
+
+        body {
+            background-color: white;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        
+        .leftspace {
+            margin-left: 20%;
+            /*to adjust the page setup*/ 
+            height: 450px;
+            width: 76%;
+        }
+        
+        .crashtable1 {
+            border: none;
+            width: 1435px;
+        }
+        
+        .crashtable2 {
+            border: none;
+            width: 1435px;
+        }
+        
+        th, td {
+            border: none;
+        }
+        
+        .crashtable {
+            border: none;
+        }
+        
+        .DetaileddurationTable {
+            border: none;
+            width: 300px;
+        }
+        
+        th {
+            border: none;
+            background-color: rgba(131, 127, 204, 0.5);
+        }
+        
+        td {
+            border: none;
+            background-color: rgba(203, 202, 225, 0.5);
+        }
+        
+        h3, h5 {
+            font-family: 'Montserrat';
+            color: #5C5992;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width: 150px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        button[type="submit"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+        button[type='button'] {
+            border:none;
+          background: none;}
+        
+        .dropdown-options.hidden {
+            display: none;
+        }
+        
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-selected {
+            display: inline-block;
+            padding: 8px;
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        
+        .dropdown-arrow {
+    position: absolute;
+    top: 80%;
+    right: 5px;
+    transform: translateY(-50%) rotate(0deg);
+    width: 6px;
+    height: 6px;
+    border: solid #000;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 1px;
+    transition: transform 0.3s ease;
+}
+        .dropdown-arrow.open {
+            transform: translateY(-50%), rotate(45deg);
+        }
+        
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-top: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+        
+        .dropdown-options-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        /* Modal styles */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: #f2f2f2;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #f2f2f2;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal-content p {
+            color: #5C5992;
+            font-weight: bold;
+        }
+
+        .modal-content ul li {
+            color: #000;
+        }
+    </style>
+                          
+        </style>
+        </head>
+        <body>
+         
+          <br><br><h1><b>CRASH DETAILS</b></h1>
+          <div class=container>
+         
+         
+              <center>
+                <table>
+                    <td><tr>
+                        <th>Flight ID</th>
+                        <th>Date</th>
+                        <th>Email ID</th>
+                        <th>Copilot</th>
+                        <th>Drone name</th> 
+                        <th>Reason for Crash</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Damaged Parts</th>
+                        <th>Total Cost</th>
+                        <th>Action</th>
+
+
+                        
+                  </tr></td>
+                    
+                  <% for(var i=0;i<flight.length;i++){ %>
+                  <tr></tr>
+                    <form action="/all_crashdetails" method="POST">
+                    
+                        
+                      <td  class="overflow-hidden">
+                        <input type="text" id="flight_id" name="flight_id" value='<%- flight[i].flight_id %>' readonly>
+                      </td> 
+
+                      <td  class="overflow-hidden">
+                        <% var dateObj = new Date(flight[i].date); %>
+                        <% var formattedDate = ("0" + dateObj.getDate()).slice(-2) + "-" + ("0" + (dateObj.getMonth() + 1)).slice(-2) + "-" + dateObj.getFullYear(); %>
+                        <%= formattedDate %>
+                      </td>
+                      <td  class="overflow-hidden">
+                        <input type="text" id="emailid" name="emailid" value='<%- flight[i].emailid %>' readonly>
+                      </td> 
+                    
+                      
+                      <td  class="overflow-hidden">
+                        <input type="text" id="copilot" name="copilot" value='<%- flight[i].copilot%>' readonly>
+                      </td> 
+
+                      <td  class="overflow-hidden">
+                        <input type="text" id="drone_name" name="drone_name" value='<%- flight[i].drone_name%>' readonly>
+                      </td> 
+                      <td  class="overflow-hidden">
+                        <input type="text" id="reason" name="reason" value='<%- flight[i].reason%>' readonly>
+                      </td> 
+                      <td  class="overflow-hidden"><center>
+                        <button type="submit" class='btn1' name=editcrashdetails value=<%- flight[i].flight_id %>><b>Edit</b></button>
+
+                      </center>
+                        
+                       
+                      </td  class="overflow-hidden">
+                      <td><center>
+                        <button type="submit" class='btn1' name=deletecrashdetails ONCLICK="alert('Succesfully Deleted the crash details..')" value=<%- flight[i].flight_id %>><b>Delete</b></button>
+                      </center>
+                       
+                       
+                      </td></form>
+                      <form id="crashForm" action="/insertdamagedparts" method="post">
+                      <td >
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" onclick="toggleDropdown(event, '<%=i %>')">
+                                <span class="dropdown-text">Damaged Items</span>
+                                <span class="dropdown-arrow"></span>
+                            </div>
+                            <div class="dropdown-options hidden" id="dropdownOptions<%= i %>">
+                                <% for (var j = 0; j < items_name.length; j++) { %>
+                                <div class="dropdown-option">
+                                    <input type="checkbox" id="part<%=i%>-<%=j %>" name="selectedItems" value="<%-items_name[j].items_name%>">
+                                    <label for="part<%=i %>-<%= j%>"><%= items_name[j].items_name%></label>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </td>
+                      
+                    
+                      <td>
+                        <button type="button" onclick="showCostDetails('<%= flight[i].flight_id %>')"><%= flight[i].total_cost %></button>
+                    </td>
+                    <td>
+                      <button type="submit" name="flightId" value="<%= flight[i].flight_id %>">Submit</button>
+                    
+                  </td>
+                     
+              
+                    
+                    
+                    </form></tr><%}%>
+                    </table></center>
+             </center>
+            
+
+             <div class="modal" id="costModal">
+              <div class="modal-content">
+                  <span class="close" onclick="hideCostDetails()">&times;</span>
+                  <h3>Total Cost Details</h3>
+                  <div id="costDetails"></div>
+              </div>
+          </div>
+          
+          
+              <script>
+                  function toggleDropdown(event, index) {
+                      const dropdownOptions = document.getElementById(`dropdownOptions${index}`);
+                      dropdownOptions.classList.toggle('hidden');
+                      event.stopPropagation();
+                  }
+          
+                  
+                  function showCostDetails(flightId) {
+              fetch(`/cost_details?flightId=${flightId}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      const total_cost = data.total_cost;
+                      const items_name = data.items_name;
+          
+                      const costDetailsElement = document.getElementById('costDetails');
+                      costDetailsElement.innerHTML = `
+                     
+                          <ul>
+                              ${items_name.map((item, i) => `<li>${item}: ${total_cost[i]}</li>`).join('')}
+                          </ul>
+                      `;
+          
+                      const modal = document.getElementById('costModal');
+                      modal.style.display = 'block';
+                  })
+                  .catch(error => {
+                      console.error('Error fetching cost details:', error);
+                  });
+          }
+          
+                  function hideCostDetails() {
+                      const modal = document.getElementById('costModal');
+                      modal.style.display = 'none';
+                  }
+              </script>
+
+            
+              
+ </body>
+    </html>

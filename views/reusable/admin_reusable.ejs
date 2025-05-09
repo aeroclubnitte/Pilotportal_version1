@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <title>Infinity Drones Pilot Portal</title>
+  <script>
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = 'https://i.imgur.com/4KBcfHV.png'; 
+  </script>
+ 
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif; /* Montserrat font */
+    }
+
+    .side-nav {
+      width: 300px;
+      background: rgba(92, 89, 146, 1); /* Purple background color */
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin-bottom: 10px; /* Add margin bottom for spacing between elements */
+      cursor: pointer;
+      position: relative;
+      color: #fff; /* White text color */
+      transition: background-color 0.3s; /* Smooth transition */
+      display: flex;
+      align-items: center;
+      font-size: 20px; /* Reduce the font size for side nav elements */
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    li:hover {
+      background: rgba(255, 255, 255, 0.2); /* Transparent white on hover */
+      border-radius: 10px; /* Added */
+      padding-left: 15px; /* Added */
+    }
+
+    li.active {
+      background: #fff;
+      font-weight: bold;
+    }
+
+    .fa {
+      margin-right: 40px;
+      margin-left:20px;
+      color: #000; /* Black icon color */
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      color: #fff; /* White arrow color */
+      font-size: 10px; /* Adjust the font size as desired */
+    }
+
+    .arrow.left {
+      right: auto;
+      left: 10px;
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .top-nav {
+      background-color: transparent;
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      left: 200px;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    .logout-link {
+      color:black;
+      text-decoration: none;
+    }
+
+    .logout-icon {
+      margin-right: 5px;
+    }
+
+    .logout-link:hover,
+    .logout-link:focus {
+      color: #000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-top: 20px; /* Add margin top for spacing above "PILOT PORTAL" */
+      padding: 0 10px;
+    }
+
+    .logo-image {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      display: flex;
+       /* Add margin top for spacing above "PILOT PORTAL" */
+      padding: 0 10px;
+      background-image: url('https://i.imgur.com/TDHv9uC.png');
+      background-size: cover;
+      /* background-position: center; */
+      width: 60px;
+      height: 60px;
+      float: left;
+
+    }
+
+    .logo-text {
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px; /* Increase the font size for "Pilot Portal" */
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .pilot-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Updated CSS for side nav links */
+    .side-nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .side-nav a:hover,
+    .side-nav a:focus {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-nav">
+    <div class="logo">
+      <div class="logo-image"></div>
+      <span class="logo-text">Pilot Portal</span>
+    </div><br><br>
+    <ul>
+      <li>
+       <a href="/admin">
+          <i class="fa fa-home"></i>
+          <span>Dashboard</span>
+          <span class="arrow">&gt;</span>
+        </a>
+      </li>
+      <li>
+        <a href="/all_pilots">
+          <i class="fa fa-user"></i>
+          <span>Pilot Profile</span>
+          <span class="arrow">&gt;</span>
+        </a>
+      </li>
+      <li>
+        <a href="/newflightdetails">
+          <i class="fa fa-plane"></i>
+          <span>Flight Details</span>
+          <span class="arrow">&gt;</span>
+        </a>
+      </li>
+      <li>
+        <a href="/newflight">
+          <i class="fa fa-calendar"></i>
+          <span>Flight Schedules</span>
+          <span class="arrow ">&gt;</span>
+        </a>
+      </li>
+
+      <li>
+      
+        <a href="/simulate_admin" style="text-decoration:none; color:#ffffff;">
+        <i class="fa fa-clock"></i>
+          <span>Simulation Details</span>
+          <span class="arrow ">&gt;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="top-nav">
+    <a class="logout-link" href="/login">
+      <i class="fa fa-sign-out-alt logout-icon"></i>
+      Logout
+    </a>
+  </div>
+</body>
+</html>
