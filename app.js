@@ -91,6 +91,7 @@ app.use('/insert_damaged_parts',require('./Router/index'))
 app.use('/cost_details',require('./Router/index'))
 
 app.use('/view_flight_form',require('./Router/flight_schedule_router'))
+app.use('/suggestion',require('./Router/flight_schedule_router'))
 app.use('/reschedule_flight',require('./Router/flight_schedule_router'))
 app.use('/add_flight_schedule',require('./Router/flight_schedule_router'))
 app.use('/',require('./Router/flight_schedule_router'))
@@ -125,6 +126,7 @@ app.use('/add_crash_details',require('./Router/admin_flightdetails_router'))
 app.use('/scheduleflights',require('./Router/admin_flightschedule_router'))
 app.use("/",require("./Router/admin_flightschedule_router"));
 app.use('/view_flight_forms',require('./Router/admin_flightschedule_router'))
+
 app.use('/add_flight',require('./Router/admin_flightschedule_router'))
 app.use('/all_schedules',require('./Router/admin_flightschedule_router'))
 

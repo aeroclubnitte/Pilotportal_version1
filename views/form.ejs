@@ -101,8 +101,32 @@
    
 }
         
+button[type='submit'],
+button[type='button'] {
+  width: 120px;
+  margin-left: 0;
+}
 
         button[type='submit'] {
+            display: inline-block;
+            padding: 8px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            width:100px;
+            background: #5C5992;
+            border: 3px solid #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-left: 250px; */
+        }
+
+         button[type='button'] {
             display: inline-block;
             padding: 8px 16px;
             color: white;
@@ -124,6 +148,11 @@
         button[type="submit"]:hover {
             background-color: rgba(217, 217, 217, 0.17);
         }
+
+          button[type="button"]:hover {
+            background-color: rgba(217, 217, 217, 0.17);
+        }
+
         fieldset {
     margin-bottom: 20px; /* Adjust the spacing between fieldsets */
     padding: 12px; /* Add padding around fieldsets */
@@ -204,12 +233,88 @@
           <label for="copilot">Copilot</label>
           <input type="text" name='copilot' id="copilot" placeholder="Enter copilot's name" required>
         </div></div></fieldset>
-        <div>
+        <!-- <div>
          <button  type="submit" ONCLICK="alert('Flight is scheduled succesfully..')"value="Schedule Flight">Submit</button>
         </div>
-        
+         <div>
+         <button type="button" onclick="getSuggestion()" value="Suggest Flight">Suggest</button>
+
+        </div> -->
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+  <button type="submit" onclick="alert('Flight is scheduled successfully..')" value="Schedule Flight">Submit</button>
+  <button type="button" onclick="getSuggestion()" value="Suggest Flight">Suggest</button>
+</div>
+
       </form>
-  
+    
   </div>
+
+ <!-- Simple Popup Modal -->
+<!-- <div id="popup" style="display:none; position:fixed; top:30%; left:25%; background:#fff; padding:20px; box-shadow:0 0 10px #999; z-index:1000;"> -->
+  <div id="popup" style="
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 25px 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  z-index: 1000;
+  font-family: 'Montserrat';
+  color: #333;
+  max-width: 450px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+">
+
+  <p id="popupMessage">...</p>
+  <!-- <button onclick="closePopup()">OK</button> -->
+   <button onclick="closePopup()" style="
+  margin-top: 20px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  background: #5C5992;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+ display: flex;
+            justify-content: center;
+            align-items: center;
+">OK</button>
+
+</div>
+
+
+<script>
+  async function getSuggestion() {
+    const pilot = document.getElementById('email').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+
+    try {
+      const res = await fetch('/suggestion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pilot, date, time })
+      });
+
+      const data = await res.json();
+      document.getElementById('popupMessage').innerText = data.message;
+      document.getElementById('popup').style.display = 'block';
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>

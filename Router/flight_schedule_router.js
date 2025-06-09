@@ -9,6 +9,8 @@ const pool =require('../database.js');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
 
+const suggestionController = require('../Controller/suggestionController');
+
 router.use(bodyParser.urlencoded({extended:true}))
 router.use(bodyParser.json())
 router.use(cookieParser())
@@ -209,6 +211,27 @@ router.post("/edit_schedulemem", async (req, res) => {
     res.render('simulation_display',{layout:false,simulations:simulate_detail,totalHours});
 }
  } );
+
+//for getting suggestion 
+
+
+router.post('/suggestion', suggestionController.getSuggestion);
+
+
+
+
+
+// app.post('/suggestion', async (req, res) => {
+//   const { pilot, date, time } = req.body;
+
+//   // Example dummy suggestion logic
+//   const message = `Hi ${pilot}, for your flight on ${date} at ${time}, the weather looks great! Low wind, no rain. ✅ Safe to fly.`;
+
+//   res.json({ message });
+// });
+
+
+
 
 
 module.exports = router
