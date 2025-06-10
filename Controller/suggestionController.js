@@ -42,7 +42,9 @@ exports.getSuggestion = async (req, res) => {
       });
     }
 
-    const wind = data.hourly.wind_speed_10m[index];
+   
+    const wind_kmh = data.hourly.wind_speed_10m[index];
+    const wind = (wind_kmh / 3.6).toFixed(2);
     const rain = data.hourly.precipitation_probability[index];
     const clouds = data.hourly.cloudcover[index];
     const temp = data.hourly.temperature_2m[index];
@@ -55,7 +57,7 @@ exports.getSuggestion = async (req, res) => {
     let issues = [];
 
     // Weather-related issues
-    if (wind > 6) issues.push("⚠️ Wind is high — flight may be unstable.");
+    if (wind > 6.1) issues.push("⚠️ Wind is high — flight may be unstable.");
     if (rain > 30) issues.push("☔ Rain chance is high — not recommended.");
     if (clouds > 70) issues.push("☁️ Dense clouds may affect navigation.");
     if (temp < 10 || temp > 35) issues.push("🌡️ Temperature may impact battery performance.");
