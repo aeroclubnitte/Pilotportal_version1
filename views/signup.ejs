@@ -6,6 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Infinity Drones Pilot Portal</title>
   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.querySelector('#password');
+    const confirmPasswordInput = document.querySelector('#cpassword');
+    const emailInput = document.querySelector('#emailid');
+    const phoneInput = document.querySelector('#phone_number');
+
+    // Add validation messages dynamically
+    const createMessageElement = (inputElement) => {
+        const message = document.createElement('span');
+        message.style.fontSize = '12px';
+        message.style.fontWeight = 'bold';
+        message.style.marginLeft = '10px';
+        message.style.color = 'red';
+        inputElement.parentNode.insertBefore(message, inputElement.nextSibling);
+        return message;
+    };
+
+    const passwordMessage = createMessageElement(passwordInput);
+    const confirmPasswordMessage = createMessageElement(confirmPasswordInput);
+    const emailMessage = createMessageElement(emailInput);
+    const phoneMessage = createMessageElement(phoneInput);
+
+    // Password Strength Validation
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+        if (password.length < 8) {
+            passwordMessage.textContent = 'Must be at least 8 characters';
+        } else if (!/[A-Z]/.test(password)) {
+            passwordMessage.textContent = 'Include at least one uppercase letter';
+        } else if (!/[0-9]/.test(password)) {
+            passwordMessage.textContent = 'Include at least one number';
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            passwordMessage.textContent = 'Include at least one special character';
+        } else {
+            passwordMessage.textContent = '';
+        }
+    });
+
+    // Confirm Password Validation
+    confirmPasswordInput.addEventListener('input', () => {
+        if (confirmPasswordInput.value !== passwordInput.value) {
+            confirmPasswordMessage.textContent = "Passwords don't match";
+        } else {
+            confirmPasswordMessage.textContent = '';
+        }
+    });
+
+    // Email Validation
+    emailInput.addEventListener('input', () => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value)) {
+            emailMessage.textContent = 'Invalid Email';
+        } else {
+            emailMessage.textContent = '';
+        }
+    });
+
+    // Phone Number Validation
+    phoneInput.addEventListener('input', () => {
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(phoneInput.value)) {
+            phoneMessage.textContent = 'Must be 10 digits';
+        } else {
+            phoneMessage.textContent = '';
+        }
+    });
+
+    // Prevent form submission if any validation fails
+    document.querySelector('.form1').addEventListener('submit', (e) => {
+        const isPasswordValid = passwordMessage.textContent === '';
+        const isConfirmPasswordValid = confirmPasswordMessage.textContent === '';
+        const isEmailValid = emailMessage.textContent === '';
+        const isPhoneValid = phoneMessage.textContent === '';
+
+        if (!isPasswordValid || !isConfirmPasswordValid || !isEmailValid || !isPhoneValid) {
+            e.preventDefault();
+            alert('Please fix the errors in the form before submitting.');
+        }
+    });
+});
+
     var link = document.querySelector("link[rel~='icon']");
     if (!link) {
       link = document.createElement('link');
@@ -451,7 +532,7 @@ align-items: center;
  <body>
 <div class="form-container">
     
-    <form class="form2" action="/login">
+    <form class="form2" action="/login" onsubmit="signupUser(event)">
         <div class="logo"></div>
         <div class="hellopilot">WELCOME BACK!</div>
         <div class="paragraph">
